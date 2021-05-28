@@ -176,7 +176,9 @@ select {
 
 /* Mi Codigo */
 
-
+html {
+    scroll-behavior: smooth;
+}
 .navigation {
     position: fixed;
     width: 100%;
