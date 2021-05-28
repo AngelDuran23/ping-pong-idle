@@ -192,7 +192,7 @@ newsRouter.post('/add', (req, res) => {
 
 newsRouter.post('/customers', (req, res) => {
 
-    let sql = `UPDATE customers SET name = '${req.body.name}', number = '${req.body.number}', city='${req.body.city}', email ='${req.body.email}' WHERE email = '${req.body.email}'`;
+    var sql = `UPDATE customers SET name = '${req.body.name}', number = '${req.body.number}', city='${req.body.city}', email ='${req.body.email}' WHERE email = '${req.body.email}'`;
 
 
     connection.query(sql, error => {
@@ -201,16 +201,15 @@ newsRouter.post('/customers', (req, res) => {
 
     });
 
-    sql = 'SELECT * FROM customers';
+    var sql = 'SELECT * FROM customers';
 
     connection.query(sql, (error, results) => {
         if (error) throw error;
 
-       
+        res.render('pages/resultado', {
+            'results': results
+        });
 
-    });
-    res.render('pages/resultado', {
-        'results': results
     });
     
 });
