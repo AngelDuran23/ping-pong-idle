@@ -216,7 +216,7 @@ newsRouter.post('/customers', (req, res) => {
 
 //DELETE
 
-newsRouter.post('/delete', (req, res) => {
+newsRouter.post('/customers', (req, res) => {
 
     let sql = `DELETE FROM customers WHERE email = '${req.body.email}'`;
     connection.query(sql, error => {
