@@ -12,12 +12,14 @@
 
 
     <script>
-        function update(nombre, correo) {
+        function update(nombre, numero, ciudad, correo) {
 
             console.log(nombre);
-            document.getElementById('nombre').value = nombre;
+            document.getElementById('name').value = nombre;
             console.log(correo);
-            document.getElementById('correo').value = correo;
+            document.getElementById('number').value = numero;
+            document.getElementById('city').value = ciudad;
+            document.getElementById('email').value = correo;
 
 
         }
@@ -36,6 +38,8 @@
 
                     <th>Id</th>
                     <th>Nombre</th>
+                    <th>Numero</th>
+                    <th>Ciudad</th>
                     <th>Correo</th>
 
 
@@ -47,9 +51,13 @@
                 <tr>
                     <td><%= results[i].id %></td>
                     <td><%= results[i].name %></td>
+                    <td><%= results[i].number %></td>
                     <td><%= results[i].city %></td>
+                    <td><%= results[i].email %></td>
+
                     <td><img src="/imagenes/edit_240px.png" style="width: 30px;"
-                            onclick="update( '<%= results[i].name %>', '<%= results[i].city %>') "> </td>
+                            onclick="update( '<%= results[i].name %>', '<%= results[i].number %>', '<%= results[i].city %>',
+                            '<%= results[i].email %>') "> </td>
 
                     <!-- <td><button>update </button></td> -->
                 </tr>
@@ -61,12 +69,40 @@
         <h1>No hay ningun customer</h1>
         <% } %>
 
-        <form method="POST" action="/correo">
-            <input type="text" name="name" placeholder="nombre" id="nombre">
-            <input type="text" name="email" placeholder="correo" id="correo" readonly="readonly">
-            <textarea name="mensaje" id="" cols="30" rows="10"></textarea>
-            <button type="submit" id="boton">Actualizar</button>
-        </form>
+        <div class="formulario" style="margin-top: 100px;">
+            <H2>Actualizar</H2>
+
+            <form id="formulario-c" action="/customers" method="POST">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nombre</label>
+                    <input type="text" name="name" id="name" class="form-control" id="exampleFormControlInput1" placeholder="Nombre">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Telefono</label>
+                    <input type="text" name="number" id="number" class="form-control" id="exampleFormControlInput1"
+                        placeholder="809-123-4567">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Ciudad</label>
+                    <input type="text" name="city" id="city" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Santo Domingo">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Correo Electronico</label>
+                    <input type="email" name="email" id="email" class="form-control" id="exampleFormControlInput1"
+                        placeholder="name@example.com">
+                </div>
+
+
+               
+                <div style="margin-top: 15px;">
+                    <center><button type="submit" class="btn btn-success" id="boton-formulario">Actualizar</button>
+                    </center>
+                </div>
+
+            </form>
+        </div>
     </div>
     <%- include('./partials/footer') %>
 </body>
