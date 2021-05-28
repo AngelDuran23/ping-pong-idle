@@ -22,7 +22,7 @@ newsRouter.get('/contacto',async(req, res) =>{
     res.render('contacto');
 })
 
-newsRouter.get('/customers', (req, res) => {
+newsRouter.get('/c  ', (req, res) => {
 
     const sql = 'SELECT * FROM customers';
 
@@ -34,6 +34,43 @@ newsRouter.get('/customers', (req, res) => {
         });
 
     });
+
+});
+
+newsRouter.post('/add', (req, res) => {
+
+    const sql = `SELECT * FROM customers WHERE name = '${req.body.name}'`;
+    connection.query(sql, (error, results, fields) => {
+        if (error) throw error;
+        if (results.length > 0) {
+
+            res.send('correo enviado');
+
+        } else {
+
+            const sql = 'INSERT INTO customers SET ?';
+
+            const customerObj = {
+                name: req.body.name,
+                number: req.body.number,
+                city: req.body.city,
+                email: req.body.email,
+                mensaje: req.body.mensaje
+
+            }
+
+
+            connection.query(sql, customerObj, error => {
+                if (error) throw error;
+                res.send("correo enviado");
+
+            });
+        }
+
+    });
+
+
+
 
 });
 

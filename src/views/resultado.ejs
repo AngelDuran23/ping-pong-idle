@@ -6,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <script >
+
+    <script>
         function update(nombre, correo) {
 
             console.log(nombre);
@@ -19,53 +21,54 @@
 
 
         }
-
-     
     </script>
-    
+
 </head>
 
 
 <body>
-   
-    <% if (results.length>0){ %>
-    <table class="table table-borderless">
-        <thead>
-            <tr>
+    <%- include('./partials/header') %>
+    <div style="height: 100vh;">
+        <% if (results.length>0){ %>
+        <table class="table table-borderless">
+            <thead>
+                <tr>
 
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
 
-            </tr>
-        </thead>
 
-        <tbody>
-            <% for(var i=0; i < results.length; i++) { %>
-            <tr>
-                <td><%= results[i].id %></td>
-                <td><%= results[i].name %></td>
-                <td><%= results[i].city %></td>
-                <td><img src="/imagenes/edit_240px.png" style="width: 30px;"
-                    onclick="update( '<%= results[i].name %>', '<%= results[i].city %>') "> </td>
+                </tr>
+            </thead>
 
-                <!-- <td><button>update </button></td> -->
-            </tr>
-            <%} %>
-        </tbody>
-    </table>
-    <!-- txtName.value = results[i].name -->
-    <% }else { %>
-    <h1>No hay ningun customer</h1>
-    <% } %>
+            <tbody>
+                <% for(var i=0; i < results.length; i++) { %>
+                <tr>
+                    <td><%= results[i].id %></td>
+                    <td><%= results[i].name %></td>
+                    <td><%= results[i].city %></td>
+                    <td><img src="/imagenes/edit_240px.png" style="width: 30px;"
+                            onclick="update( '<%= results[i].name %>', '<%= results[i].city %>') "> </td>
 
-    <form method="POST" action="/correo">
-        <input type="text" name="name" placeholder="nombre" id="nombre">
-        <input type="text" name="email" placeholder="correo" id="correo" readonly="readonly">
-        <textarea name="mensaje" id="" cols="30" rows="10"></textarea>
-        <button type="submit" id="boton">Actualizar</button>
-    </form>
+                    <!-- <td><button>update </button></td> -->
+                </tr>
+                <%} %>
+            </tbody>
+        </table>
+        <!-- txtName.value = results[i].name -->
+        <% }else { %>
+        <h1>No hay ningun customer</h1>
+        <% } %>
+
+        <form method="POST" action="/correo">
+            <input type="text" name="name" placeholder="nombre" id="nombre">
+            <input type="text" name="email" placeholder="correo" id="correo" readonly="readonly">
+            <textarea name="mensaje" id="" cols="30" rows="10"></textarea>
+            <button type="submit" id="boton">Actualizar</button>
+        </form>
+    </div>
+    <%- include('./partials/footer') %>
 </body>
 
 

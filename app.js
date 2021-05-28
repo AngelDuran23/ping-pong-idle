@@ -98,38 +98,7 @@ app.get('/customers/:id', (req, res) => {
 //     res.render('contacto');
 
 // });
-app.post('/add', (req, res) => {
 
-    const sql = `SELECT * FROM customers WHERE name = '${req.body.name}'`;
-    connection.query(sql, (error, results, fields) => {
-        if (error) throw error;
-        if (results.length > 0) {
-
-            res.send('correo enviado');
-
-        } else {
-
-            const sql = 'INSERT INTO customers SET ?';
-
-            const customerObj = {
-                name: req.body.name,
-                city: req.body.city
-            }
-
-
-            connection.query(sql, customerObj, error => {
-                if (error) throw error;
-                res.send("correo enviado");
-
-            });
-        }
-
-    });
-
-
-
-
-});
 // router.get('/update', (req, res) => {
 //     res.render('update.ejs');
 
