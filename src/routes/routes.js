@@ -172,7 +172,7 @@ newsRouter.post('/add', (req, res) => {
 
             connection.query(sql, customerObj, error => {
                 if (error) throw error;
-                res.send("correo enviado");
+            
 
             });
 
