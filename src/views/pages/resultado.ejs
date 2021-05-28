@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+
+    <script>
+        function update(nombre, numero, ciudad, correo) {
+
+            console.log(nombre);
+            document.getElementById('nameU').value = nombre;
+            console.log(correo);
+            document.getElementById('numberU').value = numero;
+            document.getElementById('cityU').value = ciudad;
+            document.getElementById('emailU').value = correo;
+
+            document.getElementById("nameU").focus();
+            window.scroll(0, findPos(document.getElementById("numberU")));
+        }
+
+        function eliminar(nombre, numero, ciudad, correo) {
+
+            console.log(nombre);
+            document.getElementById('name').value = nombre;
+            console.log(correo);
+            document.getElementById('number').value = numero;
+            document.getElementById('city').value = ciudad;
+            document.getElementById('email').value = correo;
+
+            document.getElementById("boton-formulario1").focus();
+            window.scroll(0, findPos(document.getElementById("boton-formulario1")));
+        }
+    </script>
+
+</head>
+
+
+<body>
+
+    <style>
+        table thead,
+        table tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            margin: 0 auto;
+            height: 100%;
+        }
+        table{
+            margin-top: 100px;
+            
+        }
+
+        table tbody {
+            display: block;
+            max-height: 800px;
+            min-height: 800px;
+            overflow-y: scroll;
+        }
+    </style>
+    <%- include('../partials/header') %>
+    <div style="height: 100vh;">
+        <% if (results.length>0){ %>
+            <div style="width: 80%; margin: 0 auto;">
+        <table class="table table-striped" >
+            <thead style="background-color: rgb(52,58,64);">
+                <tr>
+
+                    <th style="position: sticky; top: 00px; background-color: rgb(52,58,64); color: rgb(52,150,216);">
+                        Id</th>
+                    <th style="position: sticky; top: 00px; background-color: rgb(52,58,64); color: rgb(52,150,216);">
+                        Nombre</th>
+                    <th style="position: sticky; top: 00px; background-color: rgb(52,58,64); color: rgb(52,150,216);">
+                        Numero</th>
+                    <th style="position: sticky; top: 00px; background-color: rgb(52,58,64); color: rgb(52,150,216);">
+                        Ciudad</th>
+                    <th style="position: sticky; top: 00px; background-color: rgb(52,58,64); color: rgb(52,150,216);">
+                        Correo</th>
+                    <th style="position: sticky; top: 00px; background-color: rgb(52,58,64); color: rgb(52,150,216);">
+                    </th>
+                    <th style="position: sticky; top: 00px; background-color: rgb(52,58,64); color: rgb(52,150,216);">
+                    </th>
+
+
+                </tr>
+            </thead>
+
+
+            <tbody>
+                <% for(var i=0; i < results.length; i++) { %>
+                <tr>
+                    <td><%= results[i].id %></td>
+                    <td><%= results[i].name %></td>
+                    <td><%= results[i].number %></td>
+                    <td><%= results[i].city %></td>
+                    <td><%= results[i].email %></td>
+
+                    <td><img src="/imagenes/edit_240px.png" style="width: 30px;" onclick="update( '<%= results[i].name %>', '<%= results[i].number %>', '<%= results[i].city %>',
+                                    '<%= results[i].email %>') "> </td>
+
+                    <td><img src="/imagenes/trash_128px.png" style="width: 30px; margin-right: -20px;" onclick="eliminar( '<%= results[i].name %>', '<%= results[i].number %>', '<%= results[i].city %>',
+                                '<%= results[i].email %>') "> </td>
+
+                    <!-- <td><button>update </button></td> -->
+                </tr>
+                <%} %>
+            </tbody>
+        </table>
+    </div>
+
+        <!-- txtName.value = results[i].name -->
+        <% }else { %>
+        <h1>No hay ningun customer</h1>
+        <% } %>
+
+        <div class="formulario" style="margin-top: 100px;">
+            <h2>Actualizar</h2>
+
+            <form id="formulario-c" action="/customers" method="POST">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nombre</label>
+                    <input type="text" name="name" id="nameU" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Nombre">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Telefono</label>
+                    <input type="text" name="number" id="numberU" class="form-control" id="exampleFormControlInput1"
+                        placeholder="809-123-4567">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Ciudad</label>
+                    <input type="text" name="city" id="cityU" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Santo Domingo">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Correo Electronico</label>
+                    <input  name="email" id="emailU" class="form-control" id="exampleFormControlInput1"
+                        placeholder="name@example.com" readonly >
+                </div>
+
+
+
+                <div style="margin-top: 15px;">
+                    <center><button type="submit" class="btn btn-success" id="boton-formulario">Actualizar</button>
+                    </center>
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="formulario" style="margin-top: 100px; margin-bottom: 100px;">
+            <H2>Eliminar</H2>
+
+            <form id="formulario-c" action="/delete" method="POST">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nombre</label>
+                    <input type="text" name="name" id="name" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Nombre"  readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Telefono</label>
+                    <input type="text" name="number" id="number" class="form-control" id="exampleFormControlInput1"
+                        placeholder="809-123-4567"  readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Ciudad</label>
+                    <input type="text" name="city" id="city" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Santo Domingo"  readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Correo Electronico</label>
+                    <input  name="email" id="email" class="form-control" id="exampleFormControlInput1"
+                        placeholder="name@example.com" readonly>
+                </div>
+
+
+
+                <div style="margin-top: 15px;">
+                    <center><button type="submit" class="btn btn-success" id="boton-formulario1">Eliminar</button>
+                    </center>
+                </div>
+
+            </form>
+
+        </div>
+        <%- include('../partials/footer') %>
+    </div>
+
+</body>
+
+
+</html>
