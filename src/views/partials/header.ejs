@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="./style.css">
+<div class="inicio">
+    
+    <div class="navigation" style="z-index: 100;">
+        <img src="./imagenes/logo.png" alt="" class="logo">
+        <p> <a href="/inicio">Ping Pong Idle</a> </p>
+        <ul>
+
+            <li> <a href="/inicio" class="botonNavigation">
+                    Inicio
+                </a>
+            </li>
+            <li> <a href="/nosotros" class="botonNavigation">
+                    Nosotros
+                </a></li>
+            <li> <a href="/caracteristicas" class="botonNavigation">
+                    Caracteristicas
+                </a></li>
+            <div  class="dropdown">
+                <li><a href="/contacto" class="botonNavigation">
+                        Contacto
+                    </a></li>
+                <div class="dropdown-content">
+                    <a href="#formulario">Formulario</a>
+                    <a href="#mapa">Mapa</a>
+                    
+                </div>
+            </div>
+
+        </ul>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
+        </div>
+    </div>
+    
+    <!--Back Top-->
+    <button onclick="topFunction()" id="myBtn" title="Ir arriba"><img src="/imagenes/upward_arrow_64px.png"
+            alt=""></button>
+    <!--Back Top-->
+    <script>
+        //Back To Top
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+
+        function myFunction() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+            document.getElementById("myBar").style.background = "#1AA79E";
+        };
+
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction();
+            myFunction();
+        };
+    </script>
+</div>

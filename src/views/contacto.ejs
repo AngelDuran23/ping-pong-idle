@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script>
+        function initMap() {
+            var location = {
+
+                lat: 18.493681,
+                lng: -69.983437
+
+            }
+
+            var map = new
+            google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: location
+            });
+            var icon = {
+                url: './imagenes/logo.png', // url
+                scaledSize: new google.maps.Size(30, 30), // scaled size
+                origin: new google.maps.Point(0, 0), // origin
+                anchor: new google.maps.Point(0, 0) // anchor
+            };
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "Autodealer",
+                mapTypeId: 'hybrid',
+                icon: icon
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Ping Pong Idle'.fontsize('2').bold(true)
+            })
+            infowindow.open(map, marker);
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <%- include('./partials/header') %>
+
+        <a name="formulario"></a>
+
+        <div class="contacto">
+
+
+            <div class="formulario">
+
+                <form id="formulario-c">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nombre</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Telefono</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="809-123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Ciudad</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Santo Domingo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Correo Electronico</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1"
+                            placeholder="name@example.com">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Example textarea</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            placeholder="Tu Mensaje"></textarea>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <center><button type="button" class="btn btn-success" id="boton-formulario">Enviar</button>
+                        </center>
+                    </div>
+
+                </form>
+            </div>
+            <center>
+                <div style="z-index: -10;">
+                    <a name="mapa"></a>
+                    <div id="map" style="width:750px; height: 750px; margin-top: 300px; margin-bottom: 100px; "></div>
+                </div>
+            </center>
+        </div>
+        <div class="footer">
+            <div class="footer-contenido">
+                <ul>
+                    <li><a href=""><img src="./imagenes/facebookNormal.png" alt=""></a></li>
+                    <li><a href=""><img src="./imagenes/twitterNormal.png" alt=""></a></li>
+                    <li><a href=""><img src="./imagenes/gmailNormal.png" alt=""></a></li>
+                    <li><a href=""><img src="./imagenes/linkedinNormal.png" alt=""></a></li>
+                    <li><a href=""><img src="./imagenes/instagramNorma;.png" alt=""></a></li>
+                    <li><a href=""><img src="./imagenes/pinterestNormal.png" alt=""></a></li>
+                </ul>
+            </div>
+
+
+        </div>
+
+    </div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-ttgVAuvOVPGbJ1lZWnDWki0jJPnBg4&callback=initMap&libraries=&v=weekly"
+        async>
+    </script>
+</body>
+
+</html>
